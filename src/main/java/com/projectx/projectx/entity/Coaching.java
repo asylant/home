@@ -1,8 +1,11 @@
 package com.projectx.projectx.entity;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
+
 
 @Entity
 public class Coaching {
@@ -11,30 +14,32 @@ public class Coaching {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCoaching;
 
+    @NotNull
     private Date coachingdate;
 
+    @NotNull
     private String onsite;
 
-    @OneToMany
-    private List<Coach> coaches;
+    @ManyToOne
+    private Coach coach;
 
-    @OneToMany
-    private List<Customer> customers;
+    @ManyToOne
+    private Customer customer;
 
-//    @ManyToMany
-//    @JsonIgnore
-//    private List<Discipline> disciplines;
-
+    @ManyToMany
+    @JoinTable(name = "coaching_discipline", joinColumns = @JoinColumn(name = "id_coaching"), inverseJoinColumns = @JoinColumn(name = "id_discipline"))
+    private List<Discipline> disciplines;
 
     public Coaching() {
     }
 
-    public Coaching(Long idCoaching, Date coachingdate, String onsite, List<Coach> coaches, List<Customer> customers) {
+    public Coaching(Long idCoaching, Date coachingdate, String onsite, Coach coach, Customer customer, List<Discipline> disciplines) {
         this.idCoaching = idCoaching;
         this.coachingdate = coachingdate;
         this.onsite = onsite;
-        this.coaches = coaches;
-        this.customers = customers;
+        this.coach = coach;
+        this.customer = customer;
+        this.disciplines = disciplines;
     }
 
     public Long getIdCoaching() {
@@ -61,19 +66,27 @@ public class Coaching {
         this.onsite = onsite;
     }
 
-    public List<Coach> getCoaches() {
-        return coaches;
+    public Coach getCoach() {
+        return coach;
     }
 
-    public void setCoaches(List<Coach> coaches) {
-        this.coaches = coaches;
+    public void setCoach(Coach coach) {
+        this.coach = coach;
     }
 
-    public List<Customer> getCustomers() {
-        return customers;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomers(List<Customer> customers) {
-        this.customers = customers;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public List<Discipline> getDisciplines() {
+        return disciplines;
+    }
+
+    public void setDisciplines(List<Discipline> disciplines) {
+        this.disciplines = disciplines;
     }
 }

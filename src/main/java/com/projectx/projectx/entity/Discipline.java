@@ -1,5 +1,8 @@
 package com.projectx.projectx.entity;
 
+import com.sun.istack.NotNull;
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,16 +13,17 @@ public class Discipline {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDiscipline;
 
+    @NotNull
     private String disciplinename;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "disciplines")
+    @JsonIgnore
     private List<Coaching> coachings;
 
     public Discipline() {
     }
 
-    public Discipline(Long idDiscipline, String disciplinename, List<Coaching> coachings) {
-        this.idDiscipline = idDiscipline;
+    public Discipline(String disciplinename, List<Coaching> coachings) {
         this.disciplinename = disciplinename;
         this.coachings = coachings;
     }
