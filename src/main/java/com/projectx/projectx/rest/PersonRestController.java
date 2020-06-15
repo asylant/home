@@ -23,7 +23,7 @@ public class PersonRestController {
 
 
 
-    @RequestMapping(value = "/personen/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/person/{id}", method = RequestMethod.GET)
     @ResponseBody
     public String getPerson(@PathVariable("id") long id) {
         return "person = " + pr.findPersons(id).getName();

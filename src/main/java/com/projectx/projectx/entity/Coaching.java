@@ -1,6 +1,9 @@
 package com.projectx.projectx.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -15,27 +18,30 @@ public class Coaching {
     private Long idCoaching;
 
     @NotNull
-    private Date coachingdate;
+    private Date coachingDate;
 
     @NotNull
     private String onsite;
 
     @ManyToOne
+    @JsonBackReference
     private Coach coach;
 
     @ManyToOne
+    @JsonBackReference
     private Customer customer;
 
     @ManyToMany
-    @JoinTable(name = "coaching_discipline", joinColumns = @JoinColumn(name = "id_coaching"), inverseJoinColumns = @JoinColumn(name = "id_discipline"))
+    @JsonManagedReference
+    //@JoinTable(name = "coaching_discipline", joinColumns = @JoinColumn(name = "id_coaching"), inverseJoinColumns = @JoinColumn(name = "id_discipline"))
     private List<Discipline> disciplines;
 
     public Coaching() {
     }
 
-    public Coaching(Long idCoaching, Date coachingdate, String onsite, Coach coach, Customer customer, List<Discipline> disciplines) {
+    public Coaching(Long idCoaching, Date coachingDate, String onsite, Coach coach, Customer customer, List<Discipline> disciplines) {
         this.idCoaching = idCoaching;
-        this.coachingdate = coachingdate;
+        this.coachingDate = coachingDate;
         this.onsite = onsite;
         this.coach = coach;
         this.customer = customer;
@@ -50,12 +56,12 @@ public class Coaching {
         this.idCoaching = idCoaching;
     }
 
-    public Date getCoachingdate() {
-        return coachingdate;
+    public Date getCoachingDate() {
+        return coachingDate;
     }
 
-    public void setCoachingdate(Date coachingdate) {
-        this.coachingdate = coachingdate;
+    public void setCoachingDate(Date coachingDate) {
+        this.coachingDate = coachingDate;
     }
 
     public String getOnsite() {

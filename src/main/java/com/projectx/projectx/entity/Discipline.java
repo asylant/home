@@ -1,5 +1,6 @@
 package com.projectx.projectx.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import net.minidev.json.annotate.JsonIgnore;
 
@@ -16,8 +17,8 @@ public class Discipline {
     @NotNull
     private String disciplinename;
 
-    @ManyToMany(mappedBy = "disciplines")
-    @JsonIgnore
+    @ManyToMany(mappedBy = "disciplines", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Coaching> coachings;
 
     public Discipline() {

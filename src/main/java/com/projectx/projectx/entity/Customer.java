@@ -1,9 +1,11 @@
 package com.projectx.projectx.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.List;
 
@@ -13,8 +15,8 @@ public class Customer extends Person {
     @NotNull
     private String address;
 
-    @OneToMany(mappedBy = "customer")
-    @JsonIgnore
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Coaching> coachings;
 
     public Customer() {

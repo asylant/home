@@ -12,7 +12,7 @@ import java.util.List;
 public interface Personrepository extends JpaRepository<Person, Long>{
 
 
-    @Query("SELECT p.name FROM Person p, Coach c, Coaching co WHERE p.idPerson = c.idPerson AND c.idPerson = co.coach AND co.coachingdate = ?1")
+    @Query("SELECT p.name FROM Person p, Coach c, Coaching co WHERE p.idPerson = c.idPerson AND c.idPerson = co.coach AND co.coachingDate = ?1")
     List<String> getPersonNameByDate(Date date);
 
     @Query(
