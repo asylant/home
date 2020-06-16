@@ -2,8 +2,6 @@ package com.projectx.projectx.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.sun.istack.NotNull;
-import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -17,10 +15,8 @@ public class Coaching {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCoaching;
 
-    @NotNull
     private Date coachingDate;
 
-    @NotNull
     private String onsite;
 
     @ManyToOne
@@ -33,7 +29,6 @@ public class Coaching {
 
     @ManyToMany
     @JsonManagedReference
-    //@JoinTable(name = "coaching_discipline", joinColumns = @JoinColumn(name = "id_coaching"), inverseJoinColumns = @JoinColumn(name = "id_discipline"))
     private List<Discipline> disciplines;
 
     public Coaching() {

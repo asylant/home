@@ -1,6 +1,5 @@
 package com.projectx.projectx.entity;
 
-import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 
@@ -12,10 +11,8 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPerson;
 
-    @NotNull
     private String name;
 
-    @NotNull
     private String phone;
 
     public Person() {

@@ -17,11 +17,9 @@ public class PersonRestController {
 
 
     @GetMapping ("/person")
-    public List<Person> getallpersons (){
+    public List<Person> getallperson (){
         return pr.findAll();
     }
-
-
 
     @RequestMapping(value = "/person/{id}", method = RequestMethod.GET)
     @ResponseBody

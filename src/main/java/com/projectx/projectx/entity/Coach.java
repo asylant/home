@@ -1,11 +1,8 @@
 package com.projectx.projectx.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.List;
 
@@ -14,7 +11,7 @@ public class Coach extends Person {
 
     private String location;
 
-    @OneToMany(mappedBy = "coach", fetch = FetchType.LAZY)
+    @OneToMany
     @JsonManagedReference
     private List<Coaching> coachings;
 
@@ -39,7 +36,6 @@ public class Coach extends Person {
         this.location = location;
     }
 
-    @JsonIgnore
     public List<Coaching> getCoachings() {
         return coachings;
     }

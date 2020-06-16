@@ -1,21 +1,17 @@
 package com.projectx.projectx.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.sun.istack.NotNull;
-import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
 public class Customer extends Person {
 
-    @NotNull
     private String address;
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    @OneToMany
     @JsonManagedReference
     private List<Coaching> coachings;
 

@@ -1,8 +1,6 @@
 package com.projectx.projectx.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.sun.istack.NotNull;
-import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,10 +12,9 @@ public class Discipline {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDiscipline;
 
-    @NotNull
     private String disciplinename;
 
-    @ManyToMany(mappedBy = "disciplines", fetch = FetchType.LAZY)
+    @ManyToMany
     @JsonManagedReference
     private List<Coaching> coachings;
 
